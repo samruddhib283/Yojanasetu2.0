@@ -1,0 +1,1011 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YojanaSetu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 1.2s ease-out forwards;
+    }
+
+    .bg-animated-dark {
+      background: linear-gradient(-45deg, #0f172a, #1e293b, #111827, #0f172a);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+</head>
+<body class="bg-animated-dark min-h-screen flex flex-col text-white">
+
+  <!-- Navbar -->
+  <header class="flex justify-between items-center px-6 py-4 bg-gray-900 bg-opacity-80 shadow-md backdrop-blur-md">
+    <h1 class="text-2xl font-bold text-blue-400">YojanaSetu</h1>
+    <!-- <nav class="space-x-6 hidden md:flex text-gray-300">
+      <a href="#" class="hover:text-blue-400 transition">HOME</a>
+      <a href="#" class="hover:text-blue-400 transition">Register</a>
+      <a href="#" class="hover:text-blue-400 transition">Login In</a>
+      <a href="#" class="hover:text-blue-400 transition">About</a>
+    </nav> -->
+  </header>
+
+  <!-- Hero Section -->
+  <main class="flex-grow flex items-center justify-center px-6 text-center">
+    <div class="fade-in-up max-w-2xl">
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-6 text-white drop-shadow-xl">
+        Empowering Every Citizen
+      </h2>
+      <p class="text-lg md:text-xl text-gray-300 mb-8">
+        Personalized assistance using a <span class="italic text-purple-400">multilingual AI chatbot</span> and video guidance.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="/register"
+           class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow-lg transition duration-300 text-center">
+          Create Account
+        </a>
+        <a href="/login"
+           class="bg-gray-800 hover:bg-gray-700 text-white border border-blue-500 px-6 py-3 rounded-lg shadow transition duration-300 text-center">
+          Sign In
+        </a>
+      </div>
+      
+    </div>
+  </main>
+
+  
+    <script>
+      // Navbar scroll effect
+      window.addEventListener("scroll", function () {
+        const navbar = document.getElementById("navbar");
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+  
+      // Modal logic
+      function openModal(type) {
+        document.getElementById("modal").style.display = "block";
+        document.getElementById("registerForm").style.display = type === 'register' ? "block" : "none";
+        document.getElementById("loginForm").style.display = type === 'login' ? "block" : "none";
+      }
+  
+      function closeModal() {
+        document.getElementById("modal").style.display = "none";
+      }
+  
+      window.onclick = function(event) {
+        const modal = document.getElementById("modal");
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      }
+    </script>
+  <body>
+<!--   
+    <h2>#GOVERNMENTSCHEMES / #SCHEMESFORYOU</h2> -->
+    <!-- <button class="cta-button">Find Schemes For You →</button>
+  
+    <div class="scheme-container">
+      <div class="scheme-card">
+        <div class="scheme-number">3300+</div>
+        <div class="scheme-label">Total Schemes →</div>
+      </div>
+      <div class="scheme-card">
+        <div class="scheme-number">530+</div>
+        <div class="scheme-label">Central Schemes →</div>
+      </div>
+      <div class="scheme-card">
+        <div class="scheme-number">2760+</div>
+        <div class="scheme-label">States/UTs Schemes →</div>
+      </div>
+    </div>
+  
+  </body> -->
+<!-- <head>
+<meta charset="UTF-8" />
+<title>MS.GOV Footer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+body {
+margin: 0;
+font-family: "Times New Roman", serif;
+background-color: #0b1e3b;
+color: white;
+}
+
+footer {
+padding: 60px 40px;
+background-color: #0b1e3b;
+position: relative;
+overflow: hidden;
+}
+
+footer::before {
+content: "";
+position: absolute;
+background: url("https://upload.wikimedia.org/wikipedia/commons/7/79/Magnolia_flower_silhouette.svg") no-repeat center;
+background-size: cover;
+top: -50px;
+left: -100px;
+width: 100%;
+height: 100%;
+opacity: 0.05;
+z-index: 0;
+}
+
+.footer-content {
+display: flex;
+justify-content: space-between;
+flex-wrap: wrap;
+position: relative;
+z-index: 1;
+}
+
+.left-section {
+max-width: 600px;
+animation: fadeInLeft 1.2s ease;
+}
+
+.left-section .logo-line {
+display: flex;
+align-items: center;
+gap: 15px;
+}
+
+.left-section img {
+width: 60px;
+}
+
+.left-section h1 {
+font-size: 32px;
+margin: 0;
+font-weight: bold;
+}
+
+.left-section p {
+font-size: 22px;
+margin-top: 20px;
+margin-bottom: 10px;
+line-height: 1.4;
+}
+
+.left-section .highlight {
+color: #dc3545;
+font-weight: bold;
+text-decoration: underline;
+}
+
+.social-icons {
+margin-top: 15px;
+}
+
+.social-icons i {
+font-size: 24px;
+margin-right: 15px;
+cursor: pointer;
+transition: transform 0.3s ease;
+}
+
+.social-icons i:hover {
+transform: scale(1.2);
+}
+
+.award-section {
+text-align: right;
+animation: fadeInRight 1.2s ease;
+}
+
+.award-section img {
+height: 60px;
+margin-bottom: 10px;
+}
+
+.award-section p {
+font-weight: bold;
+font-size: 14px;
+}
+
+.footer-links {
+display: flex;
+justify-content: space-between;
+flex-wrap: wrap;
+margin-top: 50px;
+z-index: 1;
+position: relative;
+}
+
+.footer-column {
+min-width: 180px;
+margin-bottom: 30px;
+animation: fadeInUp 1.5s ease;
+}
+
+.footer-column h3 {
+font-size: 22px;
+margin-bottom: 15px;
+}
+
+.footer-column ul {
+list-style: none;
+padding: 0;
+}
+
+.footer-column ul li {
+font-size: 18px;
+margin-bottom: 10px;
+color: #ccc;
+cursor: pointer;
+transition: color 0.3s ease;
+}
+
+.footer-column ul li:hover {
+color: #fff;
+}
+
+.accessibility-btn {
+position: fixed;
+bottom: 20px;
+left: 20px;
+background: #07204e;
+border-radius: 50%;
+width: 50px;
+height: 50px;
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 1000;
+box-shadow: 0 0 10px rgba(0,0,0,0.5);
+transition: transform 0.3s ease;
+}
+
+.accessibility-btn:hover {
+transform: scale(1.1);
+}
+
+.accessibility-btn i {
+color: white;
+font-size: 24px;
+}
+
+/* Animations */
+@keyframes fadeInLeft {
+0% {
+opacity: 0;
+transform: translateX(-30px);
+}
+100% {
+opacity: 1;
+transform: translateX(0);
+}
+}
+
+@keyframes fadeInRight {
+0% {
+opacity: 0;
+transform: translateX(30px);
+}
+100% {
+opacity: 1;
+transform: translateX(0);
+}
+}
+
+@keyframes fadeInUp {
+0% {
+opacity: 0;
+transform: translateY(30px);
+}
+100% {
+opacity: 1;
+transform: translateY(0);
+}
+}
+</style>
+</head> -->
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <title>Get Started Easily</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <style>
+    .get-started-section {
+      background-color: #0B1E3B;
+      color: rgb(255, 255, 255);
+      padding: 60px 20px;
+      overflow: hidden;
+    }
+
+    .card-custom {
+      background-color: #061936;
+      border: none;
+      border-radius: 1rem;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-custom:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(0, 188, 212, 0.2);
+    }
+
+    .card-img-top {
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards;
+    }
+
+    .fade-in-up-delay {
+      animation-delay: 0.5s;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 767px) {
+      .card-custom {
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Get Started Section -->
+<section class="get-started-section">
+  <div class="container">
+    <div class="row align-items-center justify-content-between gy-4">
+      
+      <!-- Left Description -->
+      <div class="col-md-6 fade-in-up">
+        <h2 class="fw-bold display-6">Get Started Easily</h2>
+        <p class="fs-5 mt-3">Need help? Use our smart chatbot to check your eligibility for government schemes, or watch helpful video guides to learn more.</p>
+      </div>
+
+      <!-- Right Cards -->
+      <div class="col-md-6 d-flex flex-column flex-md-row gap-3 fade-in-up fade-in-up-delay">
+        
+        <!-- Chatbot Card -->
+        <a href="{% url 'chatbot' %}" class="card card-custom text-white text-center text-decoration-none w-100">
+          <img src="{% static 'recommender/images/ch.jpg'%}" class="card-img-top" alt="Chatbot">
+          <div class="card-body">
+            <!-- <h5 class="card-title mb-0">Try Chatbot</h5> -->
+          </div>
+        </a>
+
+        <!-- Video Guide Card -->
+        <a href="{% url 'video_guides'  %}" class="card card-custom text-white text-center text-decoration-none w-100">
+          <img src="{% static 'recommender/images/v.jpeg'%}" class="card-img-top" alt="Video Guide">
+          <div class="card-body">
+            <!-- <h5 class="card-title mb-0">Video Guide</h5> -->
+          </div>
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bootstrap JS CDN (optional for interactive elements) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body> 
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Discover the right schemes for you</title>
+    <style>
+      body {
+        margin: 0;
+        background-color: #031c3b;
+        font-family: 'Segoe UI', sans-serif;
+        color: white;
+      }
+  
+      .services-section {
+        padding: 60px 20px;
+        text-align: center;
+      }
+  
+      .services-section h2 {
+        font-size: 2.8rem;
+        margin-bottom: 10px;
+      }
+  
+      .services-section hr {
+        width: 60px;
+        height: 4px;
+        background: gold;
+        border: none;
+        margin: 0 auto 40px;
+      }
+  
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: auto;
+        animation: fadeInUp 1s ease forwards;
+      }
+  
+      .service-card {
+        background-color: white;
+        color: #000;
+        border-radius: 8px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        border-left: 10px solid #f1c40f;
+        transition: transform 0.3s ease;
+      }
+  
+      .service-card:hover {
+        transform: translateY(-5px);
+      }
+  
+      .service-card img {
+        width: 36px;
+        height: 36px;
+      }
+  
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+  
+      @media (max-width: 768px) {
+        .services-section h2 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+  
+    <section class="services-section">
+      <h3 class="animated-heading">Discover the right schemes for you</h3>
+
+      <hr>
+      <div class="services-grid">
+        <div class="service-card">
+          <img src="{% static 'recommender/images/ag.jpg'%}" alt="Register to Vote">
+          <a href="{% url 'all_schemes'%}"> Agriculture,Rural & Environment</a>
+        </div>
+        <div class="service-card">
+          <img src="{% static 'recommender/images/ba.jpeg'%}" alt="MS.GOV For Kids">
+          <span>Banking,Financial Services and Insurance</span>
+        </div>
+        <div class="service-card">
+          <img src="{% static 'recommender/images/business.jpeg'%}" alt="Start a Business">
+          <span>Business & Entrepreneurship</span>
+        </div>
+        <div class="service-card">
+          <img src="{% static 'recommender/images/ed.jpg'%}"alt="License Renewal">
+          <span>Education & Learning</span>
+        </div>
+        <div class="service-card">
+          <img src="{% static 'recommender/images/hel.jpg'%}" alt="Outdoors">
+          <span>Health & Wellness</span>
+        </div>
+        <div class="service-card">
+          <img src="{% static 'recommender/images/hou.jpg'%}" alt="MS.GOV Connect">
+          <span>Housing & Shelter</span>
+        </div>
+        <div class="service-card">
+          <img src="{% static 'recommender/images/pub.jpg'%}" alt="Hunting Licenses">
+          <span>Public Safety,Law & Justice</span>
+        </div>
+        <div class="service-card">
+          <img src="{% static 'recommender/images/sci.jpg'%}" alt="Mobile Apps">
+          <span>Science, IT & Communications</span>
+        </div>
+        <div class="service-card">
+          <img src="{% static 'recommender/images/ski.jpg'%}" alt="Plan Your Trip">
+          <span>Skills & Employment</span>
+        </div>
+      </div>
+    </section>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Government Services Cards</title>
+        <style>
+          body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            font:bold;
+            background-color: #031c3b;
+            color: rgb(21, 19, 19);
+          }
+      
+          .card-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 60px 20px;
+            background: #031c3b;
+          }
+      
+          .card {
+            position: relative;
+            width: 300px;
+            height: 320px;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+          }
+      
+          .card:hover {
+            transform: scale(1.05);
+          }
+      
+          .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+          }
+      
+          .card:hover img {
+            transform: scale(1.1);
+          }
+      
+          .card-title {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+          }
+      
+          @media (max-width: 768px) {
+            .card {
+              width: 90%;
+              height: 280px;
+            }
+          }
+        </style>
+      </head>
+      <!-- <body>
+      
+        <section class="card-section">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed5" alt="Online Services">
+            <div class="card-title">Online Services</div>
+          </div>
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095" alt="Agency Directory">
+            <div class="card-title">Agency Directory</div>
+          </div>
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1517777170473-6d44f92f4e4b" alt="Agency Map">
+            <div class="card-title">Agency Map</div>
+          </div>
+        </section>
+        <head> -->
+          <head>
+            <meta charset="UTF-8">
+            <title>Government Portal Info Panel</title>
+            <style>
+              * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+              }
+          
+              body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background: #e8fff2;
+                padding: 30px;
+              }
+          
+              .container {
+                display: flex;
+                gap: 30px;
+                max-width: 1200px;
+                margin: auto;
+              }
+          
+              .sidebar {
+                width: 250px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+              }
+          
+              .menu-item {
+                background: #f5faff;
+                padding: 18px;
+                border-radius: 12px;
+                cursor: pointer;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                transition: all 0.3s;
+              }
+          
+              .menu-item:hover {
+                background: #dceeff;
+              }
+          
+              .menu-item.active {
+                background: #0a3e91;
+                color: white;
+              }
+          
+              .content {
+                background: #083a77;
+                color: white;
+                flex: 1;
+                padding: 30px;
+                border-radius: 15px;
+                min-height: 400px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+              }
+          
+              .content img {
+                max-width: 100%;
+                height: 200px;
+                object-fit: contain;
+                border-radius: 12px;
+              }
+          
+              .content h2 {
+                margin-top: 10px;
+              }
+            </style>
+          </head>
+          <body>
+          
+            <div class="container">
+              <!-- Sidebar -->
+              <div class="sidebar">
+                <div class="menu-item active" onclick="showSection('about', this)">📘 About Us</div>
+                <div class="menu-item" onclick="showSection('contact', this)">📩 Contact Us</div>
+                <div class="menu-item" onclick="showSection('faq', this)">💼 FAQ</div>
+                <div class="menu-item" onclick="showSection('disclaimer', this)">📱 Disclaimer</div>
+                <div class="menu-item" onclick="showSection('terms', this)">🏠 Terms & Conditions</div>
+              </div>
+          
+              <!-- Content Panel -->
+              <div class="content" id="content">
+                <img id="sectionImage" src="{% static 'recommender/images/about.png'%}" alt="About Us" />
+                <div id="sectionText">
+                  <h2>About Us</h2>
+                  <p>🌟 Vision: Ensure every citizen can access the schemes they deserve — without confusion or barriers.</p>
+                  <p>🎯 Mission: Streamline access to government schemes through AI chatbot and video guidance.</p>
+                </div>
+              </div>
+            </div>
+          
+            <script>
+              function showSection(section, element) {
+                // Update active state
+                document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
+                element.classList.add('active');
+          
+                const image = document.getElementById("sectionImage");
+                const text = document.getElementById("sectionText");
+          
+                if (section === "about") {
+                  image.src = "{% static 'recommender/images/about.png'%}";
+                  image.alt = "About Us";
+                  text.innerHTML = `
+                    <h2>About Us</h2>
+                    <p> 🌟 Vision To ensure that every citizen can access the schemes they deserve — without confusion, barriers, or missed opportunities.</p>
+                    <p>🎯 Mission
+Streamline the interface between the government and citizens for accessing schemes and benefits.
+Reduce the time and effort needed to discover and avail relevant 
+government programs — including welfare, education, employment, entrepreneurship, and financial support.
+Provide personalized assistance through a multilingual AI chatbot and video guidance.
+Build an accessible, inclusive, and user-friendly digital experience for all.</p>
+                  `;
+                } else if (section === "contact") {
+                  image.src = "{% static 'recommender/images/con.png'%}";
+                  image.alt = "Contact Us";
+                  text.innerHTML = `
+                    <h2>Contact Us</h2>
+                    <p>📞 Phone: 1800-123-456</p>
+                    <p>📧 Email: support@yojanasetu.in</p>
+                    <p>🏢 Address: SSWCOE Bhavani Peth,Solapur</p>
+                  `;
+                } else if (section === "faq") {
+                  image.src = "{% static 'recommender/images/fa.png'%}";
+                  image.alt = "FAQ";
+                  text.innerHTML = `
+                    <h2>Frequently Asked Questions</h2>
+                    <p>❓ How can I register for a scheme?</p>
+                    <p>👉 Just go to the Registration page and fill the form with your Aadhaar and details.</p>
+                  `;
+                } else if (section === "disclaimer") {
+                  image.src = "{% static 'recommender/images/dis.png'%}";
+                  image.alt = "Disclaimer";
+                  text.innerHTML = `
+                    <h2>Disclaimer</h2>
+                    <p>YojanaSetu is an independent AI-based platform created to assist users in discovering relevant government welfare schemes.
+                       We are not affiliated with any official government body or portal.
+                    All information and video guides displayed on this platform are sourced from publicly available government portals and third-party resources. 
+                    While we make efforts to ensure accuracy, users must verify all scheme details and application processes directly through official government websites.
+                   The instructional videos embedded or linked on this platform are meant for educational guidance only and do not replace official documents or portals.
+                 YojanaSetu does not claim ownership of such videos unless explicitly stated.
+                  `;
+                } else if (section === "terms") {
+                  image.src = "{% static 'recommender/images/terms.jpg'%}";
+                  image.alt = "Terms & Conditions";
+                  text.innerHTML = `
+                    <h2>Terms & Conditions</h2>
+                    <p>🔐 By using this portal, you agree to our data usage and privacy terms.
+                      YojanaSetu is a student-developed, AI-powered platform designed to guide users toward relevant government schemes. 
+                      It is not affiliated with any official agency and serves only educational and informational purposes. 
+                      Users agree to use the platform ethically and understand that suggestions are based on public data, not a guarantee of eligibility. 
+                      External links and videos are for assistance, and official sources should be consulted for final verification. 
+                      Continued use implies acceptance of updated terms.</p>
+                  `;
+                }
+              }
+            </script>
+          </body>
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-left">
+    <div class="logo-container">
+      <!-- <img src="seal.png" alt="Seal Logo" class="seal-logo" /> -->
+      <span class="logo-text">YojanaSetu.in</span>
+    </div>
+    <div class="copyright">
+      © 2025 Team TechTitans | Made with ❤ for Orchathon 2K25
+    </div>
+    <div class="social-icons">
+      <a href="#"><img src="{% static 'recommender/images/facb.png'%}" alt="Facebook" /></a>
+      <a href="#"><img src="{% static 'recommender/images/ins.jpg'%}" alt="Instagram" /></a>
+      <a href="#"><img src="{% static 'recommender/images/tw.png'%}" alt="Twitter" /></a>
+    </div>
+  </div>
+
+  <!-- <div class="footer-right">
+    <p class="tagline">
+      Discover resources and opportunities in the<br />
+      <a href="#" class="highlighted">Magnolia State.</a>
+    </p>
+  </div> -->
+</footer>
+
+
+<style>.footer {
+  background-color: #0a1f3d;
+  color: white;
+  padding: 50px 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-family: Georgia, serif;
+  animation: fadeIn 1.5s ease-in;
+
+}
+
+.footer-left {
+  max-width: 320px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.seal-logo {
+  width: 48px;
+  height: 48px;
+}
+
+.logo-text {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.footer-right {
+  max-width: 600px;
+  font-size: 24px;
+  line-height: 1.4;
+  margin-top: 20px;
+}
+
+.highlighted {
+  color: #e11d48;
+  font-weight: bold;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease-in-out;
+}
+
+.highlighted::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #e11d48;
+  left: 0;
+  bottom: -4px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease-in-out;
+}
+
+.highlighted:hover::after {
+  transform: scaleX(1);
+}
+
+.highlighted:hover {
+  color: #ff4d6d;
+}
+
+.social-icons {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons img {
+  width: 28px;
+  height: 28px;
+  background-color: white;
+  border-radius: 6px;
+  padding: 5px;
+  transition: transform 0.3s ease;
+}
+
+.social-icons img:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+</style>
+<!-- <style>
+  .footer {
+    background-color: #0b0e11;
+    color: #ffffff;
+    padding: 40px 20px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    animation: fadeInUp 2s ease;
+  }
+
+  .footer-content {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    margin-bottom: 10px;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .logo img {
+    width: 70px;
+    height: auto;
+  }
+
+  .tagline {
+    margin-top: 8px;
+    font-size: 0.95rem;
+    color: #cccccc;
+    animation: fadeIn 3s ease;
+  }
+
+  footer p {
+    margin: 8px 0;
+    font-size: 1.1rem;
+    animation: fadeIn 4s ease;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+</style>
+
+
+ Accessibility Button -->
+<!-- <div class="accessibility-btn">
+  <i class="fas fa-universal-access"></i>
+</div>    
+</body>
+</html>  -->
+

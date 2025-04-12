@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SchemeSync | AI Scheme Recommender</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #8EC5FC, #E0C3FC);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .glass-container {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            width: 100%;
+            max-width: 520px;
+            padding: 40px 30px;
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            color: #fff;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        p {
+            color: #f0f0f0;
+            font-size: 1.1rem;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            width: 100%;
+            max-width: 300px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .btn-login {
+            background: transparent;
+            border: 2px solid #00c3ff;
+            color: #00c3ff;
+        }
+
+        .btn-login:hover {
+            background-color: #00c3ff;
+            color: #fff;
+            box-shadow: 0 0 10px #00c3ff, 0 0 20px #00c3ff88;
+        }
+
+        .btn-register {
+            background: transparent;
+            border: 2px solid #12c886;
+            color: #12c886;
+        }
+
+        .btn-register:hover {
+            background-color: #12c886;
+            color: #fff;
+            box-shadow: 0 0 10px #12c886, 0 0 20px #12c88688;
+        }
+
+        .text-success {
+            color: #d4fcd7;
+            font-weight: bold;
+        }
+
+        footer {
+            color: #e0e0e0;
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .btn {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-container">
+        <h1>✨ SchemeSync</h1>
+        <p>Discover personalized government schemes using AI. <br> Empowering citizens with opportunity and clarity.</p>
+
+        <div class="button-group">
+           
+                <a href="{% url 'login' %}" class="btn btn-login">Login</a>
+                <a href="{% url 'register' %}" class="btn btn-register">Register</a>
+        
+        </div>
+
+        <footer>🚀 Built by Team TechTitans | Hackathon 2025</footer>
+    </div>
+
+</body>
+</html>

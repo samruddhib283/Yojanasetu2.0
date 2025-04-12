@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Schemes - SchemeAI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f7f9fc;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .filter-section {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+        table {
+            margin-top: 20px;
+        }
+        .table th {
+            background-color: #007bff;
+            color: white;
+        }
+        .table td {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container py-5">
+    <h2 class="text-center mb-4">📋 All Government Schemes</h2>
+
+    <!-- Filter Section -->
+    <div class="row filter-section">
+        <div class="col-md-3">
+            <label for="ministryFilter" class="form-label">Ministry</label>
+            <select id="ministryFilter" class="form-select">
+                <option value="">All</option>
+                {% for min in ministries %}
+                    <option value="{{ min }}">{{ min }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="sectorFilter" class="form-label">Sector</label>
+            <select id="sectorFilter" class="form-select">
+                <option value="">All</option>
+                {% for sec in sectors %}
+                    <option value="{{ sec }}">{{ sec }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-2">
+            <label for="yearFilter" class="form-label">Launch Year</label>
+            <select id="yearFilter" class="form-select">
+                <option value="">All</option>
+                {% for yr in years %}
+                    <option value="{{ yr }}">{{ yr }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-2">
+            <label for="csTypeFilter" class="form-label">CS/CSS</label>
+            <select id="csTypeFilter" class="form-select">
+                <option value="">All</option>
+                {% for cs in cs_types %}
+                    <option value="{{ cs }}">{{ cs }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <button id="summarize-btn" class="btn btn-primary mt-3">Summarize These Schemes</button>
+
+<div id="summary-result"></div>
+
+    
+
+    <!-- Table -->
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped" id="schemeTable">
+            <thead>
+                <tr>
+                    <th>Scheme Name</th>
+                    <th>Ministry</th>
+                    <th>Sector</th>
+                    <th>Year</th>
+                    <th>CS/CSS</th>
+                    <th>Summary</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for scheme in schemes %}
+                    <tr>
+                        <td>{{ scheme.name }}</td>
+                        <td>{{ scheme.ministry }}</td>
+                        <td>{{ scheme.sector }}</td>
+                        <td>{{ scheme.launch_year }}</td>
+                        <td>{{ scheme.cs_css }}</td>
+                        <td>{{ scheme.summary }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Script to filter table -->
+<script>
+    const filters = ['ministryFilter', 'sectorFilter', 'yearFilter', 'csTypeFilter'];
+    filters.forEach(id => document.getElementById(id).addEventListener('change', filterTable));
+
+    function filterTable() {
+        const ministry = document.getElementById('ministryFilter').value.toLowerCase();
+        const sector = document.getElementById('sectorFilter').value.toLowerCase();
+        const year = document.getElementById('yearFilter').value.toLowerCase();
+        const cs_css = document.getElementById('csTypeFilter').value.toLowerCase();
+
+        const rows = document.querySelectorAll('#schemeTable tbody tr');
+        rows.forEach(row => {
+            const [name, min, sec, yr, cs, summary] = [...row.children].map(td => td.textContent.toLowerCase());
+            const match = (!ministry || min.includes(ministry)) &&
+                          (!sector || sec.includes(sector)) &&
+                          (!year || yr.includes(year)) &&
+                          (!cs_css || cs.includes(cs_css));
+            row.style.display = match ? '' : 'none';
+        });
+    }
+</script>
+<script>
+    // Get CSRF token from cookie
+    function getCSRFToken() {
+        const match = document.cookie.match(/csrftoken=([\w-]+)/);
+        return match ? match[1] : '';
+    }
+    
+    document.getElementById('summarize-btn').addEventListener('click', function () {
+        const ministry = document.getElementById('ministryFilter').value;
+        const sector = document.getElementById('sectorFilter').value;
+        const year = document.getElementById('yearFilter').value;
+        const cs_css = document.getElementById('csTypeFilter').value;
+    
+        fetch('/summarize_filtered_schemes/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': getCSRFToken()
+            },
+            body: `ministry=${encodeURIComponent(ministry)}&sector=${encodeURIComponent(sector)}&year=${encodeURIComponent(year)}&cs_css=${encodeURIComponent(cs_css)}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('summary-result').innerHTML = `
+                <div class="alert alert-info mt-3" role="alert">
+                    <strong>Summary:</strong><br>${data.summary}
+                </div>
+            `;
+        })
+        .catch(error => {
+            document.getElementById('summary-result').innerHTML = `
+                <div class="alert alert-danger mt-3" role="alert">
+                    <strong>Error:</strong> ${error.message}
+                </div>
+            `;
+        });
+    });
+    </script> 
+
+</body>
+</html>

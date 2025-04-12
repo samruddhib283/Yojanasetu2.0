@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scheme Recommender</title>
+</head>
+<body>
+    <h2>Get Recommended Schemes</h2>
+
+    <form id="recommender-form">
+        <input type="text" name="age" placeholder="Enter Age" required>
+        <input type="text" name="occupation" placeholder="Enter Occupation" required>
+        <input type="text" name="income" placeholder="Enter Income" required>
+        <button type="submit">Get Schemes</button>
+    </form>
+
+    <div id="recommendations" style="margin-top: 20px;"></div>
+
+    <script>
+    document.getElementById("recommender-form").addEventListener("submit", async function(e) {
+        e.preventDefault();
+
+        const age = e.target.age.value;
+        const occupation = e.target.occupation.value;
+        const income = e.target.income.value;
+
+        try {
+            const res = await fetch("/predict-scheme/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ age, occupation, income })
+            });
+
+            const data = await res.json();
+            console.log("Received data:", data);
+
+            if (data.schemes) {
+                document.getElementById("recommendations").innerText = data.schemes;
+            } else if (data.error) {
+                document.getElementById("recommendations").innerText = "Error: " + data.error;
+            } else {
+                document.getElementById("recommendations").innerText = "No recommendation available.";
+            }
+        } catch (err) {
+            console.error("Error:", err);
+            document.getElementById("recommendations").innerText = "Something went wrong.";
+        }
+    });
+    </script>
+</body>
+</html>
+

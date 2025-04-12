@@ -1,0 +1,11 @@
+scheme_name,min_age,max_age,min_income,max_income,occupation
+PM Awas Yojana,18,60,0,300000,laborer
+Startup India,18,40,100000,1500000,entrepreneur
+PMSYM,18,40,0,15000,unorganized worker
+Kisan Samman,18,99,0,200000,farmer
+NIRAMAYA,0,99,0,500000,disabled person
+National Pension Scheme,18,60,0,100000,private employee
+Skill India,18,35,0,300000,student
+Standup India,21,50,100000,1000000,women entrepreneur
+Scholarship Scheme,15,25,0,200000,student
+Mudra Yojana,18,60,0,1000000,business
